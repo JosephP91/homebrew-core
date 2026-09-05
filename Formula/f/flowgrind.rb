@@ -33,6 +33,10 @@ class Flowgrind < Formula
 
   uses_from_macos "libpcap"
 
+  on_linux do
+    depends_on "util-linux"
+  end
+
   def install
     system "autoreconf", "--force", "--install", "--verbose" if build.head?
     system "./configure", *std_configure_args, "--disable-silent-rules"
