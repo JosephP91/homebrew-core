@@ -57,7 +57,7 @@ jobs:
     container:
       image: ghcr.io/homebrew/brew:main
     outputs:
-      runners: ${{steps.runner-matrix.outputs.result}}
+      runners: ${{steps.runner-matrix.outputs.runners}}
     steps:
       - name: Set up Homebrew
         id: set-up-homebrew
@@ -66,79 +66,16 @@ jobs:
           core: true
           cask: false
 
-      - name: Prepare runner matrix
-        id: runner-matrix
-        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
-        with:
-          script: |
-            const macOSRegex = /^(\d+(?:\.\d+)?)(?:-(arm64|x86_64))?$/;
-            const linuxGitHubRegex = /^ubuntu-/;
-            const linuxSelfHostedRegex = /^linux-(?:arm64|x86_64)$/;
-            return context.payload.inputs.runner.split(",")
-                                                .map(s => s.trim())
-                                                .filter(Boolean)
-                                                .map(s => {
-              const macOSMatch = macOSRegex.exec(s);
-              if (macOSMatch)
-                return {runner: `${macOSMatch[1]}-${macOSMatch[2] ?? "x86_64"}-${context.runId}-dispatch`, cleanup: false};
-              else if (linuxGitHubRegex.test(s))
-                return {
-                  runner:    s,
-                  container: {
-                    image:   "ghcr.io/homebrew/brew:main",
-                    options: "--user=linuxbrew"
-                  },
-                  workdir:   "/github/home",
-                  cleanup:   false
-                };
-              else if (linuxSelfHostedRegex.test(s))
-                return {runner: `${s}-${context.runId}-dispatch`, cleanup: false};
-              else
-                return {runner: s, cleanup: true};
-            });
-
       - name: Ensure homebrew/core is up-to-date
         if: endsWith(github.ref, 'main') || endsWith(github.ref, 'master')
         run: brew update
 
-      - name: Check for existing bottle
-        shell: brew ruby {0}
-        env:
-          HOMEBREW_RUNNER_MATRIX: ${{ steps.runner-matrix.outputs.result }}
-          HOMEBREW_DISPATCHED_FORMULA: ${{ inputs.formula }}
-        run: |
-          matrix = JSON.parse(ENV.fetch("HOMEBREW_RUNNER_MATRIX"))
-          formula_name = ENV.fetch("HOMEBREW_DISPATCHED_FORMULA")
-          formula = Formulary.factory(formula_name)
-          exit_code = 0
-
-          matrix.each do |entry|
-            runner = entry.fetch("runner")
-
-            bottle_tag = if runner.start_with?("ubuntu-") && runner.end_with?("-arm")
-              Utils::Bottles.tag(:arm64_linux)
-            elsif runner.start_with?("ubuntu") || runner.start_with?("linux")
-              Utils::Bottles.tag(:x86_64_linux)
-            elsif runner.match?(/^\d+-/)
-              os_version, arch, _ = *runner.split("-")
-              system = MacOSVersion.new(os_version).to_sym
-              arch = arch.to_sym
-
-              Utils::Bottles::Tag.new(system:, arch:)
-            end
-            next if bottle_tag.blank?
-
-            bottled_on_current_runner = formula.bottle_specification.tag?(bottle_tag, no_older_versions: true)
-            next unless bottled_on_current_runner
-
-            exit_code = 1
-            puts GitHub::Actions::Annotation.new(
-              :error,
-              "#{formula_name} already has a bottle for #{bottle_tag}!",
-            )
-          end
-
-          exit exit_code
+      - name: Prepare runner matrix
+        id: runner-matrix
+        run: >-
+          brew generate-bottle-ci-matrix
+          --runners="$DISPATCH_BUILD_BOTTLE_RUNNER"
+          "$DISPATCH_BUILD_BOTTLE_FORMULA"
 
   bottle:
     needs: prepare
