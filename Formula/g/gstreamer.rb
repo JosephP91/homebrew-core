@@ -2,7 +2,7 @@ class Gstreamer < Formula
   desc "Development framework for multimedia applications"
   homepage "https://gstreamer.freedesktop.org/"
   license all_of: ["LGPL-2.0-or-later", "LGPL-2.1-or-later", "MIT"]
-  revision 2
+  revision 3
   compatibility_version 1
 
   stable do
@@ -56,7 +56,6 @@ class Gstreamer < Formula
   depends_on "dav1d"
   depends_on "faac"
   depends_on "faad2"
-  depends_on "fdk-aac"
   depends_on "ffmpeg"
   depends_on "flac"
   depends_on "gdk-pixbuf"
@@ -204,6 +203,7 @@ class Gstreamer < Formula
       -Dgst-editing-services:pygi-overrides-dir=#{site_packages}/gi/overrides
       -Dgst-python:pygi-overrides-dir=#{site_packages}/gi/overrides
       -Dgst-python:python=#{python3}
+      -Dgst-plugins-bad:fdkaac=disabled
       -Dgst-plugins-bad:opencv=disabled
       -Dgst-plugins-bad:sctp=enabled
       -Dgst-plugins-bad:sctp-internal-usrsctp=disabled
@@ -291,7 +291,6 @@ class Gstreamer < Formula
     system bin/"ges-launch-1.0", "--ges-version"
     system bin/"gst-inspect-1.0", "libav"
     system bin/"gst-inspect-1.0", "--plugin", "dvbsuboverlay"
-    system bin/"gst-inspect-1.0", "--plugin", "fdkaac"
     system bin/"gst-inspect-1.0", "--plugin", "volume"
     system bin/"gst-inspect-1.0", "--plugin", "cairo"
     system bin/"gst-inspect-1.0", "--plugin", "dvdsub"
