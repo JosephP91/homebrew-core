@@ -1,8 +1,8 @@
 class Llgo < Formula
   desc "Go compiler based on LLVM integrate with the C ecosystem and Python"
   homepage "https://github.com/xgo-dev/llgo"
-  url "https://github.com/xgo-dev/llgo/archive/refs/tags/v1.0.1.tar.gz"
-  sha256 "f79aa5da8c7baad55b0a287c0c9c7d073428156a58750204ef0fa9098ea71f5d"
+  url "https://github.com/xgo-dev/llgo/archive/refs/tags/v1.0.2.tar.gz"
+  sha256 "9349a8098fe2d2e839b316dd5130d243bf1f7b53fd21312c3c31517e64fd32cb"
   license "Apache-2.0"
   head "https://github.com/xgo-dev/llgo.git", branch: "main"
 
@@ -22,20 +22,15 @@ class Llgo < Formula
   depends_on "bdw-gc" => :no_linkage
   depends_on "go"
   depends_on "libuv" => :no_linkage
+  depends_on "lld@22"
+  depends_on "llvm@22"
   depends_on "openssl@3"
   depends_on "pkgconf"
 
   uses_from_macos "libffi"
 
-  on_macos do
-    depends_on "lld@21"
-    depends_on "llvm@21"
-  end
-
   on_linux do
     depends_on "libunwind"
-    depends_on "lld@19"
-    depends_on "llvm@19" # Newer LLVM doesn't work with aarch64-linux-unknown triple llgo passes
     depends_on "zlib-ng-compat"
   end
 
@@ -52,7 +47,7 @@ class Llgo < Formula
       -X #{module_path}/internal/env.buildTime=#{time.iso8601}
       -X #{module_path}/xtool/env/llvm.ldLLVMConfigBin=#{llvm.opt_bin}/llvm-config
     ]
-    tags = %W[llvm#{llvm.version.major}]
+    tags = []
     path_deps = %w[lld go pkgconf].map { |name| find_dep(name).opt_bin }
     path_deps << llvm.opt_bin
     script_env = { PATH: "#{path_deps.join(":")}:${PATH}" }
