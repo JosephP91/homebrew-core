@@ -7,11 +7,11 @@ class Panache < Formula
   head "https://github.com/jolars/panache.git", branch: "main"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "5eb859a98dee211a9e28f8bdc2b70f853d041a574e9ebf48c2a886d37aa0693e"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "41576485da68d677ee426ff3ca44ec622f67ae8deba83564949521a3befa181b"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "a040142d8df0e7631624bc45dfed72a850edb30cc8069a2aea418bcd5c93e428"
-    sha256 cellar: :any,                 arm64_linux:   "fd762245b7725c558802b762602da1e0974188074530d345e695f0c71e7db639"
-    sha256 cellar: :any,                 x86_64_linux:  "cf87eb911069a79fe6e2566d9232c64dcd7e377e9e7d66c706e46894ee6e7111"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "d4eb15bf573989524c18a834dbc39cced6237bf75eefb77a55d5a0016ac39edd"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "92994c30cab9ce6370e5f34a23525cb38b8b882a05cefc646afe2e10c38bb184"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "e7bd4ddc4d3cb8ba57afb4572530ce84c859f53d02b1f5639240d268db1bfc68"
+    sha256 cellar: :any,                 arm64_linux:   "7136faeb5bf1fee08dbedabb78859df877e691b0250dd5e1dc6a3651b6c67c08"
+    sha256 cellar: :any,                 x86_64_linux:  "288c431561b585f11747445a520a1e146da4f3871022814bd240ea605dafb4a3"
   end
 
   depends_on "rust" => :build
