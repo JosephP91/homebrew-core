@@ -115,6 +115,6 @@ class Stp < Formula
       print(s.check())
     PYTHON
 
-    assert_equal "True\n", shell_output("python3.14 test.py")
+    assert_equal "True\n", shell_output("#{python3} test.py")
   end
 end
