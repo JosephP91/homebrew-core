@@ -6,7 +6,7 @@ class PortableRuby < PortableFormula
   url "https://cache.ruby-lang.org/pub/ruby/4.0/ruby-4.0.6.tar.gz"
   sha256 "837d299e8f7ddf2be31a229a7a7e019d354979825117989acb3b32b1a9be262a"
   license "Ruby"
-  revision 1
+  revision 2
 
   # This regex restricts matching to versions other than X.Y.0.
   livecheck do
@@ -44,8 +44,8 @@ class PortableRuby < PortableFormula
   end
 
   resource "bootsnap" do
-    url "https://rubygems.org/downloads/bootsnap-1.25.0.gem"
-    sha256 "41059e7d0f9cb4023a33465d095f64b913fc9d1b808d6524c307da945fbcffcf"
+    url "https://rubygems.org/downloads/bootsnap-1.26.0.gem"
+    sha256 "ca96237015e6cd74a02963d5821cf00ac5ea134653b323e8cd6d702a7718bf1b"
 
     livecheck do
       url "https://rubygems.org/api/v1/versions/bootsnap.json"
