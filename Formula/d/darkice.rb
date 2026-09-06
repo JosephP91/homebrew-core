@@ -4,7 +4,7 @@ class Darkice < Formula
   url "https://github.com/rafael2k/darkice/archive/refs/tags/v1.6.tar.gz"
   sha256 "52807d887d60646776110b63543d3845ebe9ed52d3eea44bed7c4bdd95b6575e"
   license "GPL-3.0-or-later"
-  revision 1
+  revision 2
 
   livecheck do
     url :stable
@@ -26,7 +26,6 @@ class Darkice < Formula
   depends_on "pkgconf" => :build
 
   depends_on "faac"
-  depends_on "fdk-aac"
   depends_on "jack"
   depends_on "lame"
   depends_on "libogg"
@@ -55,7 +54,7 @@ class Darkice < Formula
       system "./configure", "--sysconfdir=#{etc}",
                             "--with-lame-prefix=#{formula_opt_prefix("lame")}",
                             "--with-faac-prefix=#{formula_opt_prefix("faac")}",
-                            "--with-fdkaac-prefix=#{formula_opt_prefix("fdk-aac")}",
+                            "--without-fdkaac",
                             "--with-twolame",
                             "--with-jack",
                             "--with-vorbis",
