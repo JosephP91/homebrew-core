@@ -4,6 +4,7 @@ class Vala < Formula
   url "https://download.gnome.org/sources/vala/0.56/vala-0.56.19.tar.xz"
   sha256 "5ad7cbbfcc0de61b403d6797c9ef60455bfbebd8e162aec33b5b0b097adfb9d5"
   license "LGPL-2.1-or-later"
+  revision 1
 
   bottle do
     sha256 arm64_tahoe:   "3ce508d2757e042f2dda24e5401860ce4ada78085e168daded1748b2c81c3f82"
