@@ -1,8 +1,8 @@
 class ArgusClients < Formula
   desc "Audit Record Generation and Utilization System clients"
   homepage "https://openargus.org"
-  url "https://github.com/openargus/clients/archive/refs/tags/v5.0.0.tar.gz"
-  sha256 "c695e69f8cfffcb6ed978f1f29b1292a2638e4882a66ea8652052ba1e42fe8bc"
+  url "https://github.com/openargus/clients/archive/refs/tags/v5.0.4.tar.gz"
+  sha256 "c129fd709cb356a6cdc0692062a9cf8bf62bdfeab4026348f61078ab70b4fbcc"
   license "GPL-3.0-or-later"
 
   bottle do
