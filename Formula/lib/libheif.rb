@@ -7,11 +7,11 @@ class Libheif < Formula
   compatibility_version 1
 
   bottle do
-    sha256 cellar: :any, arm64_tahoe:   "7488ed2b4f6c8bf725698a7d8f896d1765fc71cc736832ace86a6f06e0ad8a9c"
-    sha256 cellar: :any, arm64_sequoia: "e19ecb35f24ac7b008d034b685710c2670c7a770a0f344a28f6edf70c8b7479b"
-    sha256 cellar: :any, arm64_sonoma:  "484e6c0754b7ba4dd0250feb01ff7ec84374f9fbd829ed6061ebefe486ceda13"
-    sha256 cellar: :any, arm64_linux:   "2222deebba261c387c21505a219bd9314ece5c4f37979b41c15459b012d16233"
-    sha256 cellar: :any, x86_64_linux:  "f09dacccdb6f298462a6746808ae00cae17c79f59690787364741e7b977f2c7b"
+    sha256 cellar: :any, arm64_tahoe:   "92198fcf52d01ed3a1a28985c853fbe6a62f985cbcbad35c6e456bdf8d9afbee"
+    sha256 cellar: :any, arm64_sequoia: "041d84184b1051554d73d72d09361edb47e9811a21fab3fb2844a22dcdf595d6"
+    sha256 cellar: :any, arm64_sonoma:  "95f58e4146b97e93dfb4130ef2f0ade21297bc69e554bf965c0f1739da603458"
+    sha256 cellar: :any, arm64_linux:   "8ae2652d13879da4460a3cb6c7c184a3cbb13d6cc6fd6a1c1528d2a33c126b51"
+    sha256 cellar: :any, x86_64_linux:  "3c860f339508cbd0ef072e54550c6adf05b901d97ee00cc25673c52950edf999"
   end
 
   depends_on "cmake" => :build
