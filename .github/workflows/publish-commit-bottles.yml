@@ -647,7 +647,7 @@ jobs:
         id: resolve
         run: |
           brew_repo="$(brew --repository)"
-          pkg_version="$(brew ruby -- -e 'puts Homebrew::API.with_no_api_env { Formulary.factory("portable-ruby") }.pkg_version.to_s')"
+          pkg_version="$(brew update-portable-ruby --print-target-version)"
           {
             echo "brew_repo=${brew_repo}"
             echo "pkg_version=${pkg_version}"
