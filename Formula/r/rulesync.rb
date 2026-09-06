@@ -1,8 +1,8 @@
 class Rulesync < Formula
   desc "Unified AI rules management CLI tool"
   homepage "https://github.com/dyoshikawa/rulesync"
-  url "https://registry.npmjs.org/rulesync/-/rulesync-16.23.0.tgz"
-  sha256 "3c0cba7631561670c4008c95a8b2034e499f8564f25a9d089718dcb66722337a"
+  url "https://registry.npmjs.org/rulesync/-/rulesync-16.24.0.tgz"
+  sha256 "6a7afb80d3744a175ea2f8ec8cce8fc0027e444ba8752321cb1864d0b267d8ca"
   license "MIT"
 
   bottle do
