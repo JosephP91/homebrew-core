@@ -1,8 +1,8 @@
 class Rubocop < Formula
   desc "Ruby static code analyzer and formatter, based on the community Ruby style guide"
   homepage "https://docs.rubocop.org"
-  url "https://github.com/rubocop/rubocop/archive/refs/tags/v1.89.0.tar.gz"
-  sha256 "d0dd2cc7cf9a934412a7c636d8fc1d51193eef1928f5faa36ebb2537911472f2"
+  url "https://github.com/rubocop/rubocop/archive/refs/tags/v1.90.0.tar.gz"
+  sha256 "c1e5dba493215d78e7f4812c4329948cfd98e115b3b9ad8772d13e616abc0573"
   license "MIT"
   head "https://github.com/rubocop/rubocop.git", branch: "master"
 
@@ -38,8 +38,8 @@ class Rubocop < Formula
   end
 
   resource "parallel" do
-    url "https://rubygems.org/downloads/parallel-2.1.0.gem"
-    sha256 "b35258865c2e31134c5ecb708beaaf6772adf9d5efae28e93e99260877b09356"
+    url "https://rubygems.org/downloads/parallel-2.2.0.gem"
+    sha256 "e1059c5fd7b649558a0aec38a769f06a42942bdb40503d005a59c352fe011cd8"
   end
 
   resource "parser" do
