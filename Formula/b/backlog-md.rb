@@ -1,8 +1,8 @@
 class BacklogMd < Formula
   desc "Markdown‑native Task Manager & Kanban visualizer for any Git repository"
   homepage "https://github.com/MrLesk/Backlog.md"
-  url "https://registry.npmjs.org/backlog.md/-/backlog.md-1.51.0.tgz"
-  sha256 "20d5a58f4b9b7140fecea94ad901b04bf1aaa0f837a21fc0ca6b803d7072e2f3"
+  url "https://github.com/MrLesk/Backlog.md/archive/refs/tags/v1.51.0.tar.gz"
+  sha256 "aed59fa7f5f8309ab244a30bad1d954330e6ff049f2acdfa1498dc52a18fd914"
   license "MIT"
 
   bottle do
@@ -13,11 +13,31 @@ class BacklogMd < Formula
     sha256 cellar: :any_skip_relocation, x86_64_linux:  "f6223840ec01ab7d2622c8978de7e1e817fcc2cdefc740dfd510b5a8d8a762f4"
   end
 
-  depends_on "node"
+  depends_on "bun" => :build
+
+  on_linux do
+    # `bun build --compile` embeds the runtime, so the output inherits bun's ICU linkage.
+    depends_on "icu4c@78"
+  end
 
   def install
-    system "npm", "install", *std_npm_args
-    bin.install_symlink libexec.glob("bin/*")
+    if OS.linux?
+      bun_icu = Formula["bun"].deps.find { |dep| dep.name.match?(/^icu4c/) }.to_formula
+      icu = deps.find { |dep| dep.name.match?(/^icu4c/) }.to_formula
+
+      odie "Update icu4c dependency!" if bun_icu.name != icu.name
+    end
+
+    system "bun", "install", "--frozen-lockfile", "--ignore-scripts"
+
+    # Upstream injects the version at release time; the tagged `package.json` lags.
+    ENV["BACKLOG_BUILD_VERSION"] = version.to_s
+
+    # Not `bun run build`: that resolves `bun` from `node_modules/.bin`, and
+    # `bun build --compile` embeds whichever runtime ran the build.
+    system "bun", "scripts/build.ts"
+
+    bin.install "dist/backlog"
   end
 
   test do
