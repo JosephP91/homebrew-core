@@ -1,8 +1,8 @@
 class Pake < Formula
   desc "Turn any webpage into a desktop app with Rust with ease"
   homepage "https://github.com/tw93/Pake"
-  url "https://registry.npmjs.org/pake-cli/-/pake-cli-3.15.7.tgz"
-  sha256 "3fea5e929effcddded6ef2fb6fc7bdc49c32f560697b338013733d95b42b0e7d"
+  url "https://registry.npmjs.org/pake-cli/-/pake-cli-3.16.0.tgz"
+  sha256 "6ee7ec235e3fb05b28bd8746ab7190265bafb08e8bbd22baaa3d4106114d5d04"
   license "GPL-3.0-or-later"
 
   bottle do
@@ -64,6 +64,10 @@ class Pake < Formula
     (testpath/"index.html").write <<~HTML
       <h1>Hello, World!</h1>
     HTML
+
+    # `brew test` runs with the keg read-only, but Pake creates its build cache
+    # lock in Cargo's target directory before it does anything else.
+    ENV["CARGO_TARGET_DIR"] = testpath/"target"
 
     begin
       io = IO.popen("#{bin}/pake index.html --use-local-file --iterative-build --name test")
