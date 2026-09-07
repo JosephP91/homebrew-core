@@ -5,6 +5,7 @@ class Pnpm < Formula
   sha256 "4f400669b36259278efe44278e4adfc7f449fbccb4c255670c66332a7a792aa1"
   license "MIT"
   compatibility_version 1
+  head "https://github.com/pnpm/pnpm.git", branch: "main"
 
   livecheck do
     url "https://registry.npmjs.org/pnpm/latest"
@@ -37,17 +38,9 @@ class Pnpm < Formula
     # Upstream ships these beside the binary as shell scripts rather than
     # symlinks: the `dlx` injection for `pnpx`/`pnx` matches on the name of
     # the resolved `current_exe`, which a symlink would report as `pnpm`.
-    (bin/"pn").write <<~SH
-      #!/bin/sh
-      exec "#{opt_bin}/pnpm" "$@"
-    SH
-    ["pnpx", "pnx"].each do |name|
-      (bin/name).write <<~SH
-        #!/bin/sh
-        exec "#{opt_bin}/pnpm" dlx "$@"
-      SH
+    { "pn" => [], "pnpx" => ["dlx"], "pnx" => ["dlx"] }.each do |name, args|
+      (bin/name).write_env_script opt_bin/"pnpm", *args, {}
     end
-    chmod 0755, [bin/"pn", bin/"pnpx", bin/"pnx"]
 
     generate_completions_from_executable(bin/"pnpm", "completion")
   end
