@@ -1,8 +1,8 @@
 class Gegl < Formula
   desc "Graph based image processing framework"
   homepage "https://www.gegl.org/"
-  url "https://download.gimp.org/pub/gegl/0.4/gegl-0.4.70.tar.xz"
-  sha256 "47f50d9c3aecd375deb48c11ebfead52d162e4fc162a4b3d44618277f1faec02"
+  url "https://download.gimp.org/pub/gegl/0.4/gegl-0.4.72.tar.xz"
+  sha256 "ccbb8cdd1db56ecd4ece5dbabae0118ab2c46b5b3439c94f3cec467798ce956d"
   license all_of: ["LGPL-3.0-or-later", "GPL-3.0-or-later", "BSD-3-Clause", "MIT"]
   head "https://gitlab.gnome.org/GNOME/gegl.git", branch: "master"
 
@@ -36,6 +36,7 @@ class Gegl < Formula
   depends_on "libpng"
   depends_on "libtiff"
   depends_on "little-cms2"
+  depends_on "webp"
 
   on_macos do
     depends_on "gettext"
