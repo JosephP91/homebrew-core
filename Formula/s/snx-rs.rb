@@ -6,6 +6,14 @@ class SnxRs < Formula
   license "AGPL-3.0-only"
   head "https://github.com/ancwrd1/snx-rs.git", branch: "main"
 
+  bottle do
+    sha256 cellar: :any, arm64_tahoe:   "37e08d259066eeedd5995267fb22a8a7dbc588e720947ad55d611ac9be48d1ac"
+    sha256 cellar: :any, arm64_sequoia: "239ef8d30fec5d20753cea109d0d108aa25d86e90a56b97e1ab5f3a3d4f593cc"
+    sha256 cellar: :any, arm64_sonoma:  "34676302933ef0220207c4a80c235ec760e69878ebe2868b2d9cb97661f34ac5"
+    sha256 cellar: :any, arm64_linux:   "c7bb3587a17ac90b85ee4ae1f29299c42ab3a8ce16c7a3a877743f531640673a"
+    sha256 cellar: :any, x86_64_linux:  "b0149de533d8dae0671c4d501a18ee47bc084f343f20b57c3e4a17dca166e3fa"
+  end
+
   depends_on "pkgconf" => :build
   depends_on "rust" => :build
   depends_on "openssl@3"
