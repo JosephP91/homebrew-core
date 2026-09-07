@@ -6,12 +6,11 @@ class MarpCli < Formula
   license "MIT"
 
   bottle do
-    sha256 cellar: :any, arm64_tahoe:   "769b08ab2ca0825435b668c4e98388c71b0e34528e16cada97aa57d511e94b2c"
-    sha256 cellar: :any, arm64_sequoia: "769b08ab2ca0825435b668c4e98388c71b0e34528e16cada97aa57d511e94b2c"
-    sha256 cellar: :any, arm64_sonoma:  "769b08ab2ca0825435b668c4e98388c71b0e34528e16cada97aa57d511e94b2c"
-    sha256 cellar: :any, sonoma:        "7f1aa3598ab5f1890cce23cfe6df91956b54df4edcd0c085819d279ae1b28c20"
-    sha256 cellar: :any, arm64_linux:   "df40d9c2c44c498261d52624cab2d033c1f60741991f0c2b21b38381625a4b92"
-    sha256 cellar: :any, x86_64_linux:  "805e71821bed529f1e5e645eb7f898da5ca18d84ce6f20fee9045aabefe32201"
+    sha256 cellar: :any, arm64_tahoe:   "ca228213ef15e6ab368ce1a73b766c24a89fdd8f0370f4d7dd2899cb41f1288c"
+    sha256 cellar: :any, arm64_sequoia: "ca228213ef15e6ab368ce1a73b766c24a89fdd8f0370f4d7dd2899cb41f1288c"
+    sha256 cellar: :any, arm64_sonoma:  "ca228213ef15e6ab368ce1a73b766c24a89fdd8f0370f4d7dd2899cb41f1288c"
+    sha256 cellar: :any, arm64_linux:   "149ac5cea6e5f836b86e4b301b5e5184d87ffdcb8be7085a99dd4fad2aa68933"
+    sha256 cellar: :any, x86_64_linux:  "5d3ce9855ec8080a560a61d6bd436cc1837e78dc20b20cc4492028907678d254"
   end
 
   depends_on "node"
