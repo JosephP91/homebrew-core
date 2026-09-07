@@ -6,6 +6,14 @@ class Rubocop < Formula
   license "MIT"
   head "https://github.com/rubocop/rubocop.git", branch: "master"
 
+  bottle do
+    sha256 cellar: :any, arm64_tahoe:   "b8fcaac9be77085777d62c7a2268c73d4ef7560f113761c9225acb1828af20ee"
+    sha256 cellar: :any, arm64_sequoia: "96f0d5df2725ba31d01a33a8c445530fc50a7dd71f6d886e58483d518d096131"
+    sha256 cellar: :any, arm64_sonoma:  "3115a2efca2d7e96afad4f3f73dc23df217799a719a1424051b1a4e8c92d2e9c"
+    sha256 cellar: :any, arm64_linux:   "90ec3014725b161e6806256b6d01c0c0c0f1be9846a3047f3098496f2bb4d8e6"
+    sha256 cellar: :any, x86_64_linux:  "383fa2b8a780b8e85873dc0747e176c175aa0b7d1c14c4ac47fab8f78a4a1870"
+  end
+
   depends_on "ruby"
 
   # List with `gem install --explain rubocop -v #{version}`
