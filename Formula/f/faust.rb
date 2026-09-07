@@ -27,7 +27,14 @@ class Faust < Formula
   depends_on "pkgconf" => :build
   depends_on "libmicrohttpd"
   depends_on "libsndfile"
-  depends_on "llvm@22"
+  depends_on "llvm"
+
+  # Backport support for LLVM 23
+  patch do
+    url "https://github.com/grame-cncm/faust/commit/158e371feccc5f61a376276433b19a74d37aedce.patch?full_index=1"
+    sha256 "4f5752ac0a4df203d125700b58074b8e22bfce034f14f0e9d159669a0d786dbe"
+    type :backport
+  end
 
   def install
     # `brew linkage` doesn't like the pre-built Android libsndfile.so for faust2android.
