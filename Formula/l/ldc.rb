@@ -21,28 +21,28 @@ class Ldc < Formula
 
   depends_on "cmake" => :build
   depends_on "pkgconf" => :build
-  depends_on "lld@21" => :test
-  depends_on "llvm@21"
+  depends_on "lld" => :test
+  depends_on "llvm"
 
   resource "ldc-bootstrap" do
     on_macos do
       on_arm do
-        url "https://github.com/ldc-developers/ldc/releases/download/v1.41.0/ldc2-1.41.0-osx-arm64.tar.xz"
-        sha256 "157267042f10b047210619314aa719b4f0bf887601e93b1c634aa1ecb3c546e4"
+        url "https://github.com/ldc-developers/ldc/releases/download/v1.42.0/ldc2-1.42.0-osx-arm64.tar.xz"
+        sha256 "7a68e21c5305766a74f4736cc891a7942db7842a9226623209504bc85c701382"
       end
       on_intel do
-        url "https://github.com/ldc-developers/ldc/releases/download/v1.41.0/ldc2-1.41.0-osx-x86_64.tar.xz"
-        sha256 "5bcff48b63c56a45dbaacdb0c5bddc8ea6be86d4a0c7b2c7c8318e047f721181"
+        url "https://github.com/ldc-developers/ldc/releases/download/v1.42.0/ldc2-1.42.0-osx-x86_64.tar.xz"
+        sha256 "3d3d4283c2f0856f65aca4af3c1e14d25f12619808893ca755ea6f088508503e"
       end
     end
     on_linux do
       on_arm do
-        url "https://github.com/ldc-developers/ldc/releases/download/v1.41.0/ldc2-1.41.0-linux-aarch64.tar.xz"
-        sha256 "1c4b950a13d53379ed4f564366c27ec56d6261e21686880d70c7486b3e8c7ba8"
+        url "https://github.com/ldc-developers/ldc/releases/download/v1.42.0/ldc2-1.42.0-linux-aarch64.tar.xz"
+        sha256 "687707c3e20ff910528eb2d92f27a98cb0960284de3b026e6bf20284ac1c8511"
       end
       on_intel do
-        url "https://github.com/ldc-developers/ldc/releases/download/v1.41.0/ldc2-1.41.0-linux-x86_64.tar.xz"
-        sha256 "4a439457f0fe59e69d02fd6b57549fc3c87ad0f55ad9fb9e42507b6f8e327c8f"
+        url "https://github.com/ldc-developers/ldc/releases/download/v1.42.0/ldc2-1.42.0-linux-x86_64.tar.xz"
+        sha256 "a7bc9c956138f558cadf9c962352f59d41c80df6eb3ae3f8039f25be14a69303"
       end
     end
   end
